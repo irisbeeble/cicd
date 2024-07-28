@@ -22,7 +22,7 @@ jobs:
       run: echo "Packages installed"
 
     - name: Run unit tests
-      run: echo "Pass: 100, Fail: 0"
+      run: echo "Pass - 100, Fail - 0"
 
     - name: Build
       run: echo "Built files generated"
