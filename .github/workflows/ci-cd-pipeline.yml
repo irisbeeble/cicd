@@ -27,12 +27,38 @@ jobs:
     - name: Build
       run: echo "Built files generated"
 
-  deploy:
-    needs: build
+  deploy-to-develop:
     runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/develop'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy to develop environment
+      run: echo "Deploying to develop environment"
+
+  deploy-to-staging:
+    runs-on: ubuntu-latest
+    needs: build
     if: github.ref == 'refs/heads/master'
 
     steps:
-    - name: Deploy to staging
-      run: echo "Deployed onto Staging"
-      # Add your deployment steps here
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy to staging environment
+      run: echo "Deploying to staging environment"
+
+  deploy-to-production:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/master' && github.event_name == 'workflow_dispatch'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy to production environment
+      run: echo "Deploying to production environment"
