@@ -33,6 +33,6 @@ jobs:
     if: github.ref == 'refs/heads/master'
 
     steps:
-    - name: Deploy to production
-      run: echo "Deploying to production"
+    - name: Deploy to staging
+      run: echo "Deployed onto Staging"
       # Add your deployment steps here
